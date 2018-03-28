@@ -33,7 +33,7 @@ var template = (
 //if statement with user
 var user = {
     name: 'Peter',
-    age: 31,
+    age: 11,
     location: 'Danmark'
 }
 
@@ -48,7 +48,7 @@ var templateUser = (
     <div>
         <h2>User Info</h2>
         <h3>{user.name ? 'User-Name: ' + user.name : 'no name defined'}</h3>
-        {user.age >= 18 && <p>{user.age}</p>}
+        {(user.age) && user.age >= 18 && <p>{user.age}</p>}
         {/* because logical AND does only return the second value: <p>{user.age}</p> */}
         {getLocation(user.location)}
     </div>
