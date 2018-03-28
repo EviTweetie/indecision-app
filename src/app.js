@@ -46,8 +46,8 @@ function getLocation(location) {
 
 var templateUser = (
     <div>
-        <h1>User Info</h1>
-        <h2>{user.name}</h2>
+        <h2>User Info</h2>
+        <h3>{user.name ? 'User-Name: ' + user.name : 'no name defined'}</h3>
         <p>{user.age}</p>
         {getLocation(user.location)}
     </div>
