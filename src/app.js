@@ -1,32 +1,22 @@
 console.log("App.js is running!");
 /* 
 Commit: 
-Abschnitt 3 Lektion 12
+3.12 change var to let/const
 */
-
-// content
-/* 
-    if statements
-    ternary operator
-    logical AND operator
-*/
-
-// JSX - JavaScript XML
 
 /*Challenge: 
-    Only render subtitle if subtitle exists (with p tags) == Logical AND
-    render new p tag - if options.length > 0 "Here are your options" / "No options"
+  Change var variables to let or const
 */
 
-var app = {
+const app = {
   title: "Indecision App",
   subtitle: "Put your life in the hands of a computer.",
-  options: ["One", "Two"]
+  options: ["One", "Two", "Three"]
 };
 
 console.log(app);
 
-var template = (
+const template = (
   <div>
     <h1>{app.title}</h1>
     {app.subtitle && <p>{app.subtitle}</p>}
@@ -45,7 +35,7 @@ var template = (
 );
 
 //if statement with user
-var user = {
+const user = {
   name: "Peter",
   age: 11,
   location: "Danmark"
@@ -58,16 +48,15 @@ function getLocation(location) {
   }
 }
 
-var templateUser = (
+const templateUser = (
   <div>
     <h2>User Info</h2>
     <h3>{user.name ? "User-Name: " + user.name : "no name defined"}</h3>
     {user.age && user.age >= 18 && <p>{user.age}</p>}
-    {/* because logical AND does only return the second value: <p>{user.age}</p> */}
     {getLocation(user.location)}
   </div>
 );
 
-var appRoot = document.getElementById("app");
+const appRoot = document.getElementById("app");
 
 ReactDOM.render(template, appRoot);
