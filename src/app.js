@@ -1,11 +1,11 @@
 console.log("App.js is running!");
 /* 
 Commit: 
-3.12 change var to let/const
+3.13 Arrow Functions
 */
 
 /*Challenge: 
-  Change var variables to let or const
+  Change current functions to arrow functions
 */
 
 const app = {
@@ -47,6 +47,8 @@ function getLocation(location) {
     return <p>Location: {location}</p>;
   }
 }
+
+
 
 const templateUser = (
   <div>
