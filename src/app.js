@@ -1,12 +1,4 @@
 console.log("App.js is running!");
-/* 
-Commit: 
-3.13 Arrow Functions
-*/
-
-/*Challenge: 
-  Change current functions to arrow functions
-*/
 
 const app = {
   title: "Indecision App",
@@ -34,31 +26,19 @@ const template = (
   </div>
 );
 
-//if statement with user
-const user = {
-  name: "Peter",
-  age: 11,
-  location: "Danmark"
-};
-
-//function to get user.location
-function getLocation(location) {
-  if (location) {
-    return <p>Location: {location}</p>;
-  }
-}
-
-
-
-const templateUser = (
+let counter = 0
+const addOne = () => console.log('addOne')
+const minusOne = () => console.log('minusOne')
+const reset = () => console.log('reset')
+const templateTwo = (
   <div>
-    <h2>User Info</h2>
-    <h3>{user.name ? "User-Name: " + user.name : "no name defined"}</h3>
-    {user.age && user.age >= 18 && <p>{user.age}</p>}
-    {getLocation(user.location)}
+    <h1>Counter: {counter}</h1>
+    <button onClick={addOne}>+1</button>
+    <button onClick={minusOne}>-1</button>
+    <button onClick={reset}>Reset</button>
   </div>
-);
+)
 
 const appRoot = document.getElementById("app");
 
-ReactDOM.render(template, appRoot);
+ReactDOM.render(templateTwo, appRoot);
