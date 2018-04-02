@@ -26,8 +26,6 @@ const onRemoveAll = () => {
   render();
 };
 
-const numbers = [1, 2, 3, 4, 500];
-
 const appRoot = document.getElementById("app");
 
 const render = () => {
@@ -45,11 +43,12 @@ const render = () => {
       <p>{app.options.length}</p>
 
       <ol>
-      {numbers.map(number => {
-        return <li key={number}>{number}</li>
+      {app.options.map((optionValue) => {
+        return <li key={optionValue.index}>{optionValue}</li>
+        console.log(app.options.index)
       })}
       </ol>
-      {console.log(numbers)}
+      
       <button onClick={onRemoveAll}>Remove all</button>
 
       <form onSubmit={onFormSubmit}>
