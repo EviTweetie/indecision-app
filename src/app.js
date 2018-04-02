@@ -7,6 +7,7 @@ const app = {
 };
 
 console.log(app);
+
 let count = app.options.length
 
 const onFormSubmit = (e) => {
