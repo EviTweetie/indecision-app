@@ -8,8 +8,8 @@ const app = {
 
 console.log(app);
 
-const onFormSubmit = (e) => {
-  e.preventDefault()
+const onFormSubmit = e => {
+  e.preventDefault();
 
   const option = e.target.elements.option.value;
 
@@ -17,14 +17,16 @@ const onFormSubmit = (e) => {
     app.options.push(option);
     console.log(app.options.length);
     e.target.elements.option.value = "";
-    render()
-  } 
-}
+    render();
+  }
+};
 
 const onRemoveAll = () => {
-  app.options = []
-  render()
-}
+  app.options = [];
+  render();
+};
+
+const numbers = [1, 2, 3, 4, 500];
 
 const appRoot = document.getElementById("app");
 
@@ -33,21 +35,23 @@ const render = () => {
     <div>
       <h1>{app.title}</h1>
       {app.subtitle && <p>{app.subtitle}</p>}
-      <h2>
+      <h3>
         {app.options && app.options.length > 0
           ? "Here are your options:"
           : "No options available!"}
-      </h2>
-  
-      <h3>Number of options: </h3>
+      </h3>
+
+      <h5>Number of options: </h5>
       <p>{app.options.length}</p>
-      {/* <ol>
-        <li>Item {app.options[0]}</li>
-        <li>Item {app.options[1]}</li>
-      </ol> */}
+
+      <ol>
+      {numbers.map(number => {
+        return <li key={number}>{number}</li>
+      })}
+      </ol>
+      {console.log(numbers)}
       <button onClick={onRemoveAll}>Remove all</button>
-      
-  
+
       <form onSubmit={onFormSubmit}>
         <input type="input" name="option" />
         <button>Add Option</button>
