@@ -8,8 +8,6 @@ const app = {
 
 console.log(app);
 
-let count = app.options.length
-
 const onFormSubmit = (e) => {
   e.preventDefault()
 
@@ -17,11 +15,15 @@ const onFormSubmit = (e) => {
 
   if (option) {
     app.options.push(option);
-    count = app.options.length
-    console.log(count);
+    console.log(app.options.length);
     e.target.elements.option.value = "";
     render()
   } 
+}
+
+const onRemoveAll = () => {
+  app.options = []
+  render()
 }
 
 const appRoot = document.getElementById("app");
@@ -38,11 +40,13 @@ const render = () => {
       </h2>
   
       <h3>Number of options: </h3>
-      <p>{count}</p>
-      <ol>
+      <p>{app.options.length}</p>
+      {/* <ol>
         <li>Item {app.options[0]}</li>
         <li>Item {app.options[1]}</li>
-      </ol>
+      </ol> */}
+      <button onClick={onRemoveAll}>Remove all</button>
+      
   
       <form onSubmit={onFormSubmit}>
         <input type="input" name="option" />
