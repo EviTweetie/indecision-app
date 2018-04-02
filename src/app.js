@@ -12,7 +12,7 @@ const template = (
   <div>
     <h1>{app.title}</h1>
     {app.subtitle && <p>{app.subtitle}</p>}
-    {(app.options) && app.options.length > 0 ? (
+    {app.options && app.options.length > 0 ? (
       <div>
         <p>Here are your options:</p>
         <ol>
@@ -26,19 +26,41 @@ const template = (
   </div>
 );
 
-let counter = 0
-const addOne = () => console.log('addOne')
-const minusOne = () => console.log('minusOne')
-const reset = () => console.log('reset')
-const templateTwo = (
-  <div>
-    <h1>Counter: {counter}</h1>
-    <button onClick={addOne}>+1</button>
-    <button onClick={minusOne}>-1</button>
-    <button onClick={reset}>Reset</button>
-  </div>
-)
+let count = 0;
+const addOne = () => {
+  count++;
+  renderCounterApp()
+  //console.log("addOne", count);
+};
+const minusOne = () => {
+  count--;
+  renderCounterApp()
+  //console.log("minusOne", count);
+};
+const reset = () => {
+  count = 0;
+  renderCounterApp()
+  //console.log("reset", count);
+};
 
 const appRoot = document.getElementById("app");
 
-ReactDOM.render(templateTwo, appRoot);
+/* 
+count will never be shown in new calculated value, because templateTwo is only rendered once in the beginning
+>> new function to re-render the div
+*/
+
+const renderCounterApp = () => {
+  const templateTwo = (
+    <div>
+      <h1>Counter: {count}</h1>
+      <button onClick={addOne}>+1</button>
+      <button onClick={minusOne}>-1</button>
+      <button onClick={reset}>Reset</button>
+    </div>
+  );
+
+  ReactDOM.render(templateTwo, appRoot);
+};
+
+renderCounterApp();
