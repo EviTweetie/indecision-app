@@ -3,64 +3,54 @@ console.log("App.js is running!");
 const app = {
   title: "Indecision App",
   subtitle: "Put your life in the hands of a computer.",
-  options: ["One", "Two", "Three"]
+  options: []
 };
 
 console.log(app);
+let count = app.options.length
 
-const template = (
-  <div>
-    <h1>{app.title}</h1>
-    {app.subtitle && <p>{app.subtitle}</p>}
-    {app.options && app.options.length > 0 ? (
-      <div>
-        <p>Here are your options:</p>
-        <ol>
-          <li>Item {app.options[0]}</li>
-          <li>Item {app.options[1]}</li>
-        </ol>
-      </div>
-    ) : (
-      <p>No options available!</p>
-    )}
-  </div>
-);
+const onFormSubmit = (e) => {
+  e.preventDefault()
 
-let count = 0;
-const addOne = () => {
-  count++;
-  renderCounterApp()
-  //console.log("addOne", count);
-};
-const minusOne = () => {
-  count--;
-  renderCounterApp()
-  //console.log("minusOne", count);
-};
-const reset = () => {
-  count = 0;
-  renderCounterApp()
-  //console.log("reset", count);
-};
+  const option = e.target.elements.option.value;
+
+  if (option) {
+    app.options.push(option);
+    count = app.options.length
+    console.log(count);
+    e.target.elements.option.value = "";
+    render()
+  } 
+}
 
 const appRoot = document.getElementById("app");
 
-/* 
-count will never be shown in new calculated value, because templateTwo is only rendered once in the beginning
->> new function to re-render the div
-*/
-
-const renderCounterApp = () => {
-  const templateTwo = (
+const render = () => {
+  const template = (
     <div>
-      <h1>Counter: {count}</h1>
-      <button onClick={addOne}>+1</button>
-      <button onClick={minusOne}>-1</button>
-      <button onClick={reset}>Reset</button>
+      <h1>{app.title}</h1>
+      {app.subtitle && <p>{app.subtitle}</p>}
+      <h2>
+        {app.options && app.options.length > 0
+          ? "Here are your options:"
+          : "No options available!"}
+      </h2>
+  
+      <h3>Number of options: </h3>
+      <p>{count}</p>
+      <ol>
+        <li>Item {app.options[0]}</li>
+        <li>Item {app.options[1]}</li>
+      </ol>
+  
+      <form onSubmit={onFormSubmit}>
+        <input type="input" name="option" />
+        <button>Add Option</button>
+      </form>
     </div>
   );
 
-  ReactDOM.render(templateTwo, appRoot);
+  ReactDOM.render(template, appRoot);
 };
 
-renderCounterApp();
+render();
