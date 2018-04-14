@@ -26,6 +26,12 @@ const onRemoveAll = () => {
   render();
 };
 
+const onMakeDecision = () => {
+  const randomNum = Math.floor(Math.random() * app.options.length);
+  const option = app.options[randomNum];
+  console.log(randomNum + " option: " + option);
+};
+
 const appRoot = document.getElementById("app");
 
 const render = () => {
@@ -43,10 +49,13 @@ const render = () => {
       <p>{app.options.length}</p>
 
       <ol>
-      {app.options.map((optionValue) => <li key={optionValue}>{optionValue}</li> )}
+        {app.options.map(optionValue => (
+          <li key={optionValue}>{optionValue}</li>
+        ))}
       </ol>
-      
+
       <button onClick={onRemoveAll}>Remove all</button>
+      <button disabled={app.options.length === 0} onClick={onMakeDecision}>What should I do?</button>
 
       <form onSubmit={onFormSubmit}>
         <input type="input" name="option" />
