@@ -1,21 +1,9 @@
 class Person {
   constructor(name = 'Person default', age = 0) {
-    //constructor()
-    //you can pass arguments in the constructor function
-    //console.log('func constructor is here')
-    //this.name = name
-    //use logical or operator for default as workaround
-    //this.name = name || "default value";
-    //in ES6 you can use function defaults
-    //constructor(name = 'set default value') {
     this.name = name
     this.age = age
   }
-  //next method
   getGreeting() {
-      //return 'Hi'
-      //return 'Hi ' + this.name + '!'
-      //use template strings (interpolation)
       return `Hi ${this.name} (interpolation)!`
   }
   getDescription() {
@@ -23,16 +11,41 @@ class Person {
   }
 }
 
-const me = new Person("Evi Bulli", 47);
-console.log(me);
-console.log(me.getGreeting())
-console.log(me.getDescription())
+class Student extends Person {
+    constructor(name, age, major='undecided') {
+        super(name)
+        this.major = major
+    }
+    hasMajor() {
+        return !!this.hasMajor
+        //!!'' flips value to true 
+        //!!undefined flips value to false
+    }
+    //overwriting method of parent (super) class
+    getDescription() {
+        let description = super.getDescription()
 
-const other = new Person();
-console.log(other);
-console.log(other.getGreeting())
-console.log(other.getDescription())
+        if(this.hasMajor) {
+            //description = description + ' (add some value)'
+            //shorthand: description +=
+            //description += ' (add some value)'
+description += ` Their major is ${this.major}.`
+        }
+        return description
+    }
+}
 
-//4.24 challenge: 
-//add age as argument with default 0
-//add method getDescription - Andrew Mead is 26 year(s) old.
+const meP = new Person("Evi Bulli", 47, 'Informatik');
+console.log(meP);
+
+const otherP = new Person();
+console.log(otherP);
+
+const meS = new Student("Evi Bulli", 47, 'Informatik');
+console.log(meS);
+console.log(meS.hasMajor())
+console.log(meS.getDescription())
+
+const otherS = new Student();
+console.log(otherS);
+console.log(otherS.hasMajor())
