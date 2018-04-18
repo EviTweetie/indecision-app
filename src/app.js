@@ -1,13 +1,17 @@
 class IndecisionApp extends React.Component {
   render() {
+    const title = "Indecision";
+    const subTitle = "Put your life in the hands of a computer";
+    const options = ["Thing one", "Thing two", "Thing four"];
+
     return (
       <div>
-        <Header />
+        <Header title={title} subTitle={subTitle} />
         <Action />
-        <Options />
+        <Options options={options} />
         <AddOption />
       </div>
-    )
+    );
   }
 }
 
@@ -15,10 +19,10 @@ class Header extends React.Component {
   render() {
     return (
       <div>
-        <h1>Indecision</h1>
-        <h2>Put your life in the hands of a computer</h2>
+        <h1>{this.props.title}</h1>
+        <h2>{this.props.subTitle}</h2>
       </div>
-    )
+    );
   }
 }
 
@@ -28,7 +32,7 @@ class Action extends React.Component {
       <div>
         <button>What should I do?</button>
       </div>
-    )
+    );
   }
 }
 
@@ -36,30 +40,36 @@ class Options extends React.Component {
   render() {
     return (
       <div>
-        Options Component here
-        <Option />
+        <h3>Options Component here</h3>
+        <p>Options-Length (number or items in array) = {this.props.options.length}</p>
+        <h4>Map array items to p-tag</h4>
+        {this.props.options.map((option) => <p key={option}>{option}</p>) }
+        <h4>Unordered List</h4>
+        <ul>
+          <li>
+            <Option option={this.props.options[0]} />
+          </li>
+          <li>
+            <Option option={this.props.options[1]} />
+          </li>
+          <li>
+            <Option option={this.props.options[2]} />
+          </li>
+        </ul>
       </div>
-    )
+    );
   }
 }
 
 class Option extends React.Component {
   render() {
-    return(
-      <div>
-        Option Component here
-      </div>
-    )
+    return <div>{this.props.option}</div>;
   }
 }
 
 class AddOption extends React.Component {
   render() {
-    return (
-      <div>
-        AddOption Component here
-      </div>
-    )
+    return <div>AddOption Component here</div>;
   }
 }
 
