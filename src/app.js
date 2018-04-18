@@ -41,21 +41,12 @@ class Options extends React.Component {
     return (
       <div>
         <h3>Options Component here</h3>
-        <p>Options-Length (number or items in array) = {this.props.options.length}</p>
-        <h4>Map array items to p-tag</h4>
-        {this.props.options.map((option) => <p key={option}>{option}</p>) }
-        <h4>Unordered List</h4>
-        <ul>
-          <li>
-            <Option option={this.props.options[0]} />
-          </li>
-          <li>
-            <Option option={this.props.options[1]} />
-          </li>
-          <li>
-            <Option option={this.props.options[2]} />
-          </li>
-        </ul>
+        <p>
+          Options-Length (number or items in array) ={" "}
+          {this.props.options.length}
+        </p>
+        <h4>Map array items to Option components</h4>
+        {this.props.options.map(option => <Option key={option} optionText={option} />)}
       </div>
     );
   }
@@ -63,7 +54,7 @@ class Options extends React.Component {
 
 class Option extends React.Component {
   render() {
-    return <div>{this.props.option}</div>;
+    return <div>{this.props.optionText}</div>;
   }
 }
 
