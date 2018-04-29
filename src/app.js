@@ -27,26 +27,36 @@ class Header extends React.Component {
 }
 
 class Action extends React.Component {
+  handlePick() {
+    alert("handle pick");
+  }
   render() {
     return (
       <div>
-        <button>What should I do?</button>
+        <button onClick={this.handlePick}>What should I do?</button>
       </div>
     );
   }
 }
 
 class Options extends React.Component {
+  //create method to remove all options
+  handleRemoveAll() {
+    alert("handle remove all fired");
+  }
   render() {
     return (
       <div>
+        <button onClick={this.handleRemoveAll}>Remove all options</button>
         <h3>Options Component here</h3>
         <p>
           Options-Length (number or items in array) ={" "}
           {this.props.options.length}
         </p>
         <h4>Map array items to Option components</h4>
-        {this.props.options.map(option => <Option key={option} optionText={option} />)}
+        {this.props.options.map(option => (
+          <Option key={option} optionText={option} />
+        ))}
       </div>
     );
   }
@@ -59,9 +69,23 @@ class Option extends React.Component {
 }
 
 class AddOption extends React.Component {
+  handleAddOption (e) {
+    e.preventDefault()
+    const option = e.target.elements.option.value.trim()
+    if (option) {
+      alert(option)
+    }
+  }
   render() {
-    return <div>AddOption Component here</div>;
+    return (
+      <form id="addOptionForm" onSubmit={this.handleAddOption}>
+        <input type="text" name="option" placeholder="put in an option" />
+        <button type="submit" name="submitButton">
+          Add Option
+        </button>
+      </form>
+    );
   }
 }
 
-ReactDOM.render(<IndecisionApp />, document.getElementById("app"));
+ReactDOM.render(<IndecisionApp />, document.getElementById("app"))
