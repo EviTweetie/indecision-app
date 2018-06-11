@@ -24,6 +24,9 @@ const getName = obj.getName.bind( { name: 'Willy Coyote' } )
 console.log(getName())
 //console.log(obj.getName());
 
+//REMEMBER: in eventHandlers we often LOSE THIS BINDING 
+//INFORMATION: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind
+
 
 class IndecisionApp extends React.Component {
   render() {
