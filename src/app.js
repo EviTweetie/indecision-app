@@ -6,7 +6,13 @@ const obj = {
   age: 5
 }
 
+const func = function () {
+  console.log(this)
+}
+func() 
+
 const getName = obj.getName
+//here the context is not transferred 
 console.log(getName())
 //console.log(obj.getName());
 
