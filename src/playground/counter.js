@@ -8,13 +8,13 @@ class Counter extends React.Component {
     this.state = {
       count: 0,
       //adding more state children
-      name: 'Counter Example'
+      name: "Counter Example"
     };
   }
 
   handleAddOne() {
     console.log("handleAddOne");
-    this.setState((prevState) => {
+    this.setState(prevState => {
       return {
         count: prevState.count + 1
       };
@@ -24,13 +24,33 @@ class Counter extends React.Component {
 
   handleMinusOne() {
     console.log("handleMinusOne");
-    this.setState({ count: this.state.count - 1 });
+    this.setState(prevState => {
+      return {
+        count: prevState.count - 1
+      };
+    });
     console.log(this.state);
   }
 
   handleReset() {
     console.log("handleReset");
-    this.setState({ count: 0 });
+    this.setState(() => {
+      return { count: 0 };
+    });
+    //with just count: this.setState.count + 1 we won't get the correct value >> async calls of setState
+    /*
+    this.setState(() => {
+      return { count: this.state.count + 1 };
+    });
+    */
+    //next function call with correct output, due to prevState is used
+    //always better pass a function when using setState
+    /*
+    this.setState((prevState) => {
+      console.log(prevState)
+      return { count: prevState.count + 1 };
+    });
+    */
     console.log(this.state);
   }
 
