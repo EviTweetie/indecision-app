@@ -55,7 +55,7 @@ class Options extends React.Component {
         </p>
         <h4>Map array items to Option components</h4>
         {this.props.options.map( (option) => (
-          <Option key={option.index} optionText={option} />
+          <Option key={option} optionText={option} />
         ))}
         <br />
       </div>
@@ -73,6 +73,7 @@ class AddOption extends React.Component {
   handleAddOption (e) {
     e.preventDefault()
     const option = e.target.elements.option.value.trim()
+    //trim removes the spaces e.g. to suppress new option with spaces only
     if (option) {
       alert(option)
     }
