@@ -1,33 +1,3 @@
-const obj = {
-  name: 'Roger Rabbit',
-  getName() {
-    return this.name
-  },
-  age: 5
-}
- /*
-const func = function () {
-  console.log(this)
-  //will print undefined
-}
-func()
-*/ 
-
-//const getName = obj.getName
-//here the context is not transferred 
-//const getName = obj.getName.bind(obj)
-//bind method allows to bind the context - in this case obj
-//printing Roger Rabbit
-const getName = obj.getName.bind( { name: 'Willy Coyote' } )
-//call getName method in different context
-//printing Willy Coyote
-console.log(getName())
-//console.log(obj.getName());
-
-//REMEMBER: in eventHandlers we often LOSE THIS BINDING 
-//INFORMATION: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind
-
-
 class IndecisionApp extends React.Component {
   render() {
     const title = "Indecision";
@@ -78,7 +48,7 @@ class Options extends React.Component {
   render() {
     return (
       <div>
-        <button onClick={this.handleRemoveAll}>Remove all options</button>
+        <button onClick={this.handleRemoveAll.bind(this)}>Remove all options</button>
         <h3>Options Component here</h3>
         <p>
           Options-Length (number or items in array) ={" "}
