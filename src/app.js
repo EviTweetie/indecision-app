@@ -1,14 +1,39 @@
 class IndecisionApp extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      options: ["Thing one", "Thing two", "Thing four", "new one","else","komisch"]
+    }
+    this.handleDeleteOptions = this.handleDeleteOptions.bind(this)
+    this.handlePick = this.handlePick.bind(this)
+  }
+  handleDeleteOptions() {
+    this.setState(() => {
+      return {
+        options: []
+      }
+    })
+  }
+  handlePick() {
+    const randomNum = Math.floor(Math.random() * this.state.options.length);
+    const option = this.state.options[randomNum];
+    alert(randomNum + " option: " + option);
+  }
   render() {
     const title = "Indecision";
     const subTitle = "Put your life in the hands of a computer";
-    const options = ["Thing one", "Thing two", "Thing four","new one"];
-
+    
     return (
       <div>
         <Header title={title} subTitle={subTitle} />
-        <Action />
-        <Options options={options} />
+        <Action 
+          hasOptions={this.state.options.length > 0}
+          handlePick={this.handlePick}
+        />
+        <Options 
+          options={this.state.options} 
+          handleDeleteOptions={this.handleDeleteOptions}
+        />
         <AddOption />
       </div>
     );
@@ -27,34 +52,24 @@ class Header extends React.Component {
 }
 
 class Action extends React.Component {
-  handlePick() {
-    alert("handle pick");
-  }
   render() {
     return (
       <div>
-        <button onClick={this.handlePick}>What should I do?</button>
+        <button 
+          disabled={!this.props.hasOptions} 
+          onClick={this.props.handlePick}>
+            What should I do?
+          </button>
       </div>
     );
   }
 }
 
 class Options extends React.Component {
-  constructor (props) {
-    super(props)
-    this.handleRemoveAll = this.handleRemoveAll.bind(this)
-    //bind once and reuse within render function multiple times if needed
-  }
-  
-  //create method to remove all options
-  handleRemoveAll() {
-    //alert("handle remove all fired");
-    console.log(this.props.options) // uncaught typeError undefined bcs this.binding is broken
-  }
   render() {
     return (
       <div>
-        <button onClick={this.handleRemoveAll}>Remove all options</button>
+        <button onClick={this.props.handleDeleteOptions}>Remove all options</button>
         <h3>Options Component here</h3>
         <p>
           Options-Length (number or items in array) ={" "}
