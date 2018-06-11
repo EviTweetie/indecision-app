@@ -15,9 +15,12 @@ func()
 
 //const getName = obj.getName
 //here the context is not transferred 
-const getName = obj.getName.bind(obj)
+//const getName = obj.getName.bind(obj)
 //bind method allows to bind the context - in this case obj
 //printing Roger Rabbit
+const getName = obj.getName.bind( { name: 'Willy Coyote' } )
+//call getName method in different context
+//printing Willy Coyote
 console.log(getName())
 //console.log(obj.getName());
 
