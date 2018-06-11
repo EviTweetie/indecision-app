@@ -40,6 +40,12 @@ class Action extends React.Component {
 }
 
 class Options extends React.Component {
+  constructor (props) {
+    super(props)
+    this.handleRemoveAll = this.handleRemoveAll.bind(this)
+    //bind once and reuse within render function multiple times if needed
+  }
+  
   //create method to remove all options
   handleRemoveAll() {
     //alert("handle remove all fired");
@@ -48,7 +54,7 @@ class Options extends React.Component {
   render() {
     return (
       <div>
-        <button onClick={this.handleRemoveAll.bind(this)}>Remove all options</button>
+        <button onClick={this.handleRemoveAll}>Remove all options</button>
         <h3>Options Component here</h3>
         <p>
           Options-Length (number or items in array) ={" "}
