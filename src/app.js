@@ -42,7 +42,8 @@ class Action extends React.Component {
 class Options extends React.Component {
   //create method to remove all options
   handleRemoveAll() {
-    alert("handle remove all fired");
+    //alert("handle remove all fired");
+    console.log(this.props.options) // uncaught typeError undefined bcs this.binding is broken
   }
   render() {
     return (
