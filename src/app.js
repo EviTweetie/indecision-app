@@ -5,14 +5,19 @@ const obj = {
   },
   age: 5
 }
-
+ /*
 const func = function () {
   console.log(this)
+  //will print undefined
 }
-func() 
+func()
+*/ 
 
-const getName = obj.getName
+//const getName = obj.getName
 //here the context is not transferred 
+const getName = obj.getName.bind(obj)
+//bind method allows to bind the context - in this case obj
+//printing Roger Rabbit
 console.log(getName())
 //console.log(obj.getName());
 
