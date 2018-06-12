@@ -7,9 +7,16 @@ class IndecisionApp extends React.Component {
     this.handleDeleteOptions = this.handleDeleteOptions.bind(this);
     this.handlePick = this.handlePick.bind(this);
     this.handleAddOption = this.handleAddOption.bind(this);
+    this.handleDeleteOption = this.handleDeleteOption.bind(this)
   }
   handleDeleteOptions() {
     this.setState(() => ({ options: [] }))
+  }
+  handleDeleteOption(optionToRemove) {
+    console.log(`remove individual option: ${optionToRemove}`)
+    this.setState((prevState) => ({
+      options: prevState.options.filter( (option) => optionToRemove !== option )
+    }))
   }
   handlePick() {
     const randomNum = Math.floor(Math.random() * this.state.options.length);
@@ -40,6 +47,7 @@ class IndecisionApp extends React.Component {
         <Options
           options={this.state.options}
           handleDeleteOptions={this.handleDeleteOptions}
+          handleDeleteOption={this.handleDeleteOption}
         />
         <AddOption handleAddOption={this.handleAddOption} />
       </div>
@@ -83,7 +91,11 @@ const Options = (props) => {
         <h3>Options Component here</h3>
         <p>Number of options: {props.options.length}</p>
         {props.options.map(option => (
-          <Option key={option} optionText={option} />
+          <Option 
+            key={option} 
+            optionText={option} 
+            handleDeleteOption={props.handleDeleteOption}
+            />
         ))}
         <br />
       </div>
@@ -92,7 +104,16 @@ const Options = (props) => {
 
 
 const Option = (props) => {
-  return <p>{props.optionText}</p>
+  return (
+    <div>
+    {props.optionText}
+    <button 
+        onClick={(e) => props.handleDeleteOption(props.optionText)}
+    >
+      Remove
+    </button>
+  </div>
+  )
 }
 
 
@@ -126,8 +147,5 @@ class AddOption extends React.Component {
   }
 }
 
-//ReactDOM.render(<IndecisionApp options={['Option One', 'Option Two']} />, document.getElementById("app"));
-ReactDOM.render(
-  <IndecisionApp />,
-  document.getElementById("app")
-);
+ReactDOM.render(<IndecisionApp options={['Option One', 'Option Two', 'Option Three']} />, document.getElementById("app"));
+//ReactDOM.render(<IndecisionApp />, document.getElementById("app"))
