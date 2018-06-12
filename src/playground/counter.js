@@ -1,57 +1,54 @@
 class Counter extends React.Component {
   constructor(props) {
-    super(props);
-    this.handleAddOne = this.handleAddOne.bind(this);
-    this.handleMinusOne = this.handleMinusOne.bind(this);
-    this.handleReset = this.handleReset.bind(this);
+    super(props)
+    this.handleAddOne = this.handleAddOne.bind(this)
+    this.handleMinusOne = this.handleMinusOne.bind(this)
+    this.handleReset = this.handleReset.bind(this)
 
     this.state = {
-      count: props.count,
-      //adding more state children
-      name: "Counter Example"
-    };
+      count: 0
+    }
   }
 
+  componentDidMount () {
+    try {
+      const stringCount = localStorage.getItem("count")
+      const count = parseInt(stringCount, 10);
+      if (!NaN(count)) {
+        this.setState(() => ({count}))
+      }
+    } catch (error) {
+    }
+  }
+  
+  componentDidUpdate (prevState) {
+    if (prevState.count !== this.state.count) {
+      localStorage.setItem('count', this.state.count)
+    }
+  }
+  
+
   handleAddOne() {
-    console.log("handleAddOne");
+    console.log("handleAddOne")
     this.setState(prevState => {
       return {
         count: prevState.count + 1
-      };
-    });
-    console.log(this.state);
+      }
+    })
   }
 
   handleMinusOne() {
-    console.log("handleMinusOne");
+    console.log("handleMinusOne")
     this.setState(prevState => {
       return {
         count: prevState.count - 1
-      };
-    });
-    console.log(this.state);
+      }
+    })
   }
 
   handleReset() {
-    console.log("handleReset");
-    this.setState(() => {
-      return { count: this.props.count };
-    });
-    //with just count: this.setState.count + 1 we won't get the correct value >> async calls of setState
-    /*
-    this.setState(() => {
-      return { count: this.state.count + 1 };
-    });
-    */
-    //next function call with correct output, due to prevState is used
-    //always better pass a function when using setState
-    /*
-    this.setState((prevState) => {
-      console.log(prevState)
-      return { count: prevState.count + 1 };
-    });
-    */
-    console.log(this.state);
+    console.log("handleReset")
+    this.setState(() => ({ count: this.props.count }))
   }
 
   render() {
@@ -63,12 +60,8 @@ class Counter extends React.Component {
         <button onClick={this.handleMinusOne}>-1</button>
         <button onClick={this.handleReset}>Reset</button>
       </div>
-    );
+    )
   }
 }
 
-Counter.defaultProps = {
-  count: 0
-}
-
-ReactDOM.render(<Counter count={10} />, document.getElementById("app"));
+ReactDOM.render(<Counter count={0}/>, document.getElementById("app"))
