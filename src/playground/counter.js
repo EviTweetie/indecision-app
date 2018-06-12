@@ -6,7 +6,7 @@ class Counter extends React.Component {
     this.handleReset = this.handleReset.bind(this);
 
     this.state = {
-      count: 0,
+      count: props.count,
       //adding more state children
       name: "Counter Example"
     };
@@ -35,7 +35,7 @@ class Counter extends React.Component {
   handleReset() {
     console.log("handleReset");
     this.setState(() => {
-      return { count: 0 };
+      return { count: this.props.count };
     });
     //with just count: this.setState.count + 1 we won't get the correct value >> async calls of setState
     /*
@@ -67,4 +67,8 @@ class Counter extends React.Component {
   }
 }
 
-ReactDOM.render(<Counter />, document.getElementById("app"));
+Counter.defaultProps = {
+  count: 0
+}
+
+ReactDOM.render(<Counter count={10} />, document.getElementById("app"));
