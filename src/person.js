@@ -1,16 +1,17 @@
 //shortest way: 
 const isAdultShort = (age) => age >= 18 //returns true or false 
 
-const isAdult = (a) => {
-    if(a >= 18) {
-        return `Person (Age: ${a}) is adult: ${true}`
-    } else {
-        return `Person  (Age: ${a}) is adult: ${false}`;
-    }
-}
+const isAdult = (age) => {
+  if (age >= 18) {
+    return `Person (Age: ${age}) is adult (${true})`;
+  } else {
+    return `Person  (Age: ${age}) is not adult (${false})`;
+  }
+};
 
-export const canDrink = d => (
-    d >= 21 ? `Person (Age: ${d}) can drink: ${true}` : `Person (Age: ${d}) can drink: ${false}`); 
+const canDrink = (age) => age >= 21 ? 'can drink' : 'no drinks'
+
+const isSenior = (age) => age >= 65 
 
 
-export { isAdult }
+export { isAdult, canDrink, isSenior as default }

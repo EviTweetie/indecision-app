@@ -2,7 +2,7 @@
 
 import { square, add } from './utils'
 //{} not an object here, but import syntax!!!
-import { isAdult, canDrink } from './person'
+import isSenior, { isAdult, canDrink } from './person'
 
 console.log('app.js is running')
 
@@ -15,3 +15,4 @@ const personAge = 15
 
 console.log(isAdult(personAge));
 console.log(canDrink(personAge));
+console.log(isSenior(50))
