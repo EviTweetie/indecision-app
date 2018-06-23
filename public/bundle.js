@@ -65,12 +65,77 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(__dirname) {console.log('app.js')
-console.log(__dirname)
-console.log('hi evi')
-/* WEBPACK VAR INJECTION */}.call(exports, "/"))
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__person__ = __webpack_require__(2);
+//import './utils'
+
+
+//{} not an object here, but import syntax!!!
+
+
+console.log('app.js is running')
+
+console.log(__WEBPACK_IMPORTED_MODULE_0__utils__["b" /* square */](5))
+console.log(__WEBPACK_IMPORTED_MODULE_0__utils__["a" /* add */](10003, 4))
+console.log(__WEBPACK_IMPORTED_MODULE_1__person__["b" /* isAdult */](5))
+console.log(__WEBPACK_IMPORTED_MODULE_1__person__["a" /* canDrink */](34))
+
+const personAge = 15
+
+console.log(__WEBPACK_IMPORTED_MODULE_1__person__["b" /* isAdult */](personAge));
+console.log(__WEBPACK_IMPORTED_MODULE_1__person__["a" /* canDrink */](personAge));
+
+/***/ }),
+/* 1 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+console.log('utils is running')
+
+//named export directly in variable declaration
+const square = (x) => x * x
+/* harmony export (immutable) */ __webpack_exports__["b"] = square;
+
+
+const add = (a, b) => a + b
+/* harmony export (immutable) */ __webpack_exports__["a"] = add;
+
+
+//named exports
+//export { square, add }
+//{} not an object here!!!
+
+//default
+//export default square
+
+/***/ }),
+/* 2 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return isAdult; });
+//shortest way: 
+const isAdultShort = (age) => age >= 18 //returns true or false 
+
+const isAdult = (a) => {
+    if(a >= 18) {
+        return `Person (Age: ${a}) is adult: ${true}`
+    } else {
+        return `Person  (Age: ${a}) is adult: ${false}`;
+    }
+}
+
+const canDrink = d => (
+    d >= 21 ? `Person (Age: ${d}) can drink: ${true}` : `Person (Age: ${d}) can drink: ${false}`);
+/* harmony export (immutable) */ __webpack_exports__["a"] = canDrink;
+ 
+
+
+
 
 /***/ })
 /******/ ]);
