@@ -1,4 +1,9 @@
+import React from "react";
+import ReactDOM from "react-dom";
 
-import validator from 'validator'
+//const template = <p>test</p>
+//error because no babel so far
 
-console.log(validator.isEmail('evi@tweetie.com'))
+const template = React.createElement('p', {}, 'test')
+
+ReactDOM.render(template, document.getElementById('app'))
