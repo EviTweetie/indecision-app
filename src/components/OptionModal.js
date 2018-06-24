@@ -1,15 +1,21 @@
-import React from 'react'
-import Modal from 'react-modal'
+import React from "react";
+import Modal from "react-modal";
 
-/* const OptionModal = () => {
-    return (
-        <div>some text</div>
-    )
-} */
+const OptionModal = props => (
+  <Modal 
+    isOpen={!!props.selectedOption} 
+    onRequestClose={props.handleClearSelectedOption}
+    contentLabel="Selected Option"
+    >
+    <h3>Selected Option</h3>
+    {/*
+    {props.selectedOption
+    ? <p>{props.selectedOption}</p>
+    : null}
+    */}
+    {props.selectedOption && <p>{props.selectedOption}</p>}
+    <button onClick={props.handleClearSelectedOption}>Okay</button>
+  </Modal>
+);
 
-//shorthand
-const OptionModal = () => (
-  <div>some text</div>
-)
-
-export default OptionModal
+export default OptionModal;
