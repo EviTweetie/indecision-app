@@ -14,10 +14,9 @@ const Layout = (props) => {
     )
 }
 
-
-
-ReactDOM.render(
-    (<Layout>
-        Hello
-    </Layout>)
-    , document.getElementById("app"))
+ReactDOM.render((
+    <Layout>
+        <h1>Page Title</h1>
+        <p>This is the content</p>
+    </Layout>
+    ), document.getElementById("app"))
