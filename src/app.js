@@ -6,19 +6,18 @@ const Layout = (props) => {
     return (
         <div>
         <p>Header</p>
-        <hr />
-        {props.content}
-        <hr />
+            <hr />
+                {props.children}
+            <hr />
         <p>Footer</p>
       </div>
     )
 }
 
-const template = (
-    <div>
-        <h1>Page Title</h1>
-        <p>This is the content</p>
-    </div>
-)
 
-ReactDOM.render(<Layout content={template}/>, document.getElementById("app"))
+
+ReactDOM.render(
+    (<Layout>
+        Hello
+    </Layout>)
+    , document.getElementById("app"))
