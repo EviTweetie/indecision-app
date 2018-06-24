@@ -3,14 +3,18 @@ import Header from "./Header";
 import Action from "./Action";
 import Options from "./Options";
 import AddOption from "./AddOption";
+import OptionModal from "./OptionModal";
 
 export default class IndecisionApp extends React.Component {
-  state = { 
-    options: this.props.options 
-  }
+  state = { options: this.props.options, selectedOption: undefined };
   //Class Methods
   handleDeleteOptions = () => {
     this.setState(() => ({ options: [] }));
+  };
+  handleClearSelectedOption = () => {
+    this.setState(() => ({
+      selectedOption: undefined
+    }));
   };
   handleDeleteOption = optionToRemove => {
     console.log(`remove individual option: ${optionToRemove}`);
@@ -21,7 +25,10 @@ export default class IndecisionApp extends React.Component {
   handlePick = () => {
     const randomNum = Math.floor(Math.random() * this.state.options.length);
     const option = this.state.options[randomNum];
-    alert(randomNum + " option: " + option);
+    this.setState(() => ({
+      selectedOption: option
+    }));
+    //alert(randomNum + ' option: ' + option)
   };
   handleAddOption = option => {
     if (!option) {
@@ -58,16 +65,13 @@ export default class IndecisionApp extends React.Component {
   }
   componentWillUnmount() {
     console.log("component will unmount");
-    //could be used in option when removed
   }
 
   render() {
-    //const title = "Indecision";
     const subTitle = "Put your life in the hands of a computer";
 
     return (
       <div>
-        {/*<Header title={title} subTitle={subTitle} />*/}
         <Header subTitle={subTitle} />
         <Action
           hasOptions={this.state.options.length > 0}
@@ -79,6 +83,10 @@ export default class IndecisionApp extends React.Component {
           handleDeleteOption={this.handleDeleteOption}
         />
         <AddOption handleAddOption={this.handleAddOption} />
+        <OptionModal
+          selectedOption={this.state.selectedOption}
+          handleClearSelectedOption={this.handleClearSelectedOption}
+        />
       </div>
     );
   }
