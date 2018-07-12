@@ -1,9 +1,12 @@
-# indecision-app
+# expensify-app
 My React training 
 (many thanks to Andrew Mead https://github.com/andrewjmead http://www.mead.io)
  
 This repo does include all my errors and corrections during the course :)  
- 
+
+## start server
+npm run dev-server
+
 ### start webserver with webpack plus build (section 6)
 npm run serve
 npm run build
