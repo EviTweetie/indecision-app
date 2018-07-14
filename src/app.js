@@ -1,26 +1,28 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import { BrowserRouter, Route } from "react-router-dom";
-import "normalize.css/normalize.css";
-import "./styles/styles.scss";
+import React from "react"
+import ReactDOM from "react-dom"
+import { BrowserRouter, Route, Switch } from "react-router-dom"
+import "normalize.css/normalize.css"
+import "./styles/styles.scss"
 
 const ExpensesDashboardPage = () => (
   <div>This is from my DashBoard Component</div>
-);
+)
 
-const AddExpensePage = () => <div>This is from my AddExpense Component</div>;
-const EditExpensePage = () => <div>This is from my EditExpense Component</div>;
-const HelpPage = () => <div>This is from my HelpPage Component</div>;
+const AddExpensePage = () => <div>This is from my AddExpense Component</div>
+const EditExpensePage = () => <div>This is from my EditExpense Component</div>
+const HelpPage = () => <div>This is from my HelpPage Component</div>
+const NotFoundPage = () => <div>404!</div>
 
 const routes = (
   <BrowserRouter>
-    <div>
+    <Switch>
       <Route path="/" component={ExpensesDashboardPage} exact={true} />
       <Route path="/create" component={AddExpensePage} />
       <Route path="/edit" component={EditExpensePage} />
       <Route path="/help" component={HelpPage} />
-    </div>
+      <Route component={NotFoundPage}/>
+    </Switch>
   </BrowserRouter>
-);
+)
 
-ReactDOM.render(routes, document.getElementById("app"));
+ReactDOM.render(routes, document.getElementById("app"))
