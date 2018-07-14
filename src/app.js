@@ -1,6 +1,6 @@
 import React from "react"
 import ReactDOM from "react-dom"
-import { BrowserRouter, Route, Switch } from "react-router-dom"
+import { BrowserRouter, Route, Switch, Link } from "react-router-dom"
 import "normalize.css/normalize.css"
 import "./styles/styles.scss"
 
@@ -13,10 +13,13 @@ const EditExpensePage = () => <div>This is from my EditExpense Component</div>
 const HelpPage = () => <div>This is from my HelpPage Component</div>
 const NotFoundPage = () => (
   <div>
-    404! <a href="/">Go Home</a> 
-    {/*This would cause a full page refresh with server request - we do not want that in client side routing*/}
+    404! <Link to="/">Go home</Link>
+    {/*
+    <a href="/">Go Home</a>
+    This would cause a full page refresh with server request - we do not want that in client side routing
+    */}
   </div>
-)
+);
 
 const routes = (
   <BrowserRouter>
