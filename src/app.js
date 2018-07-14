@@ -11,7 +11,12 @@ const ExpensesDashboardPage = () => (
 const AddExpensePage = () => <div>This is from my AddExpense Component</div>
 const EditExpensePage = () => <div>This is from my EditExpense Component</div>
 const HelpPage = () => <div>This is from my HelpPage Component</div>
-const NotFoundPage = () => <div>404!</div>
+const NotFoundPage = () => (
+  <div>
+    404! <a href="/">Go Home</a> 
+    {/*This would cause a full page refresh with server request - we do not want that in client side routing*/}
+  </div>
+)
 
 const routes = (
   <BrowserRouter>
